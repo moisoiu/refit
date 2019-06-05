@@ -28,6 +28,10 @@ namespace RefitClient
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            var refitSettings = new RefitSettings();
+            refitSettings.UrlParameterFormatter = new CustomUrlParameterFormatter();
+
+            //services.AddRefitClient<Services.IService>(refitSettings)
             services.AddRefitClient<Services.IService>()
                .ConfigureHttpClient(c => c.BaseAddress = new Uri("http://localhost:5060"));
         }
